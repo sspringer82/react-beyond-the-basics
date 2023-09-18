@@ -5,7 +5,7 @@ type Person = {
   birthdate: string;
   street: string;
   city: string;
-  zipCode: string;
+  zipcode: string;
 };
 
 export default Person;

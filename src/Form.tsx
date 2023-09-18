@@ -1,5 +1,7 @@
 import React, { ChangeEvent, FormEvent, useEffect, useState } from 'react';
 import { InputPerson } from './Person';
+import { useParams, useNavigate } from 'react-router-dom';
+import usePerson from './usePerson';
 
 const initialPerson: InputPerson = {
   firstName: '',
@@ -7,17 +9,15 @@ const initialPerson: InputPerson = {
   birthdate: '',
   street: '',
   city: '',
-  zipCode: '',
+  zipcode: '',
 };
 
-type Props = {
-  id?: number | null;
-  onSave: (person: InputPerson) => void;
-  onCancel: () => void;
-};
-
-const Form: React.FC<Props> = ({ id, onSave, onCancel }) => {
+const Form: React.FC = () => {
   const [person, setPerson] = useState<InputPerson>(initialPerson);
+  const navigate = useNavigate();
+
+  const { id } = useParams<{ id: string }>();
+  const { handleSave } = usePerson();
 
   useEffect(() => {
     if (id) {
@@ -36,8 +36,9 @@ const Form: React.FC<Props> = ({ id, onSave, onCancel }) => {
 
   function handleSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
-    onSave(person);
+    handleSave(person);
     setPerson(initialPerson);
+    navigate('/');
   }
 
   return (
@@ -96,14 +97,20 @@ const Form: React.FC<Props> = ({ id, onSave, onCancel }) => {
         zip code:{' '}
         <input
           type="text"
-          name="zipCode"
-          id="zipCode"
-          value={person.zipCode}
+          name="zipcode"
+          id="zipcode"
+          value={person.zipcode}
           onChange={handleChange}
         />{' '}
       </label>
       <button type="submit">save</button>
-      <button type="reset" onClick={onCancel}>
+      <button
+        type="reset"
+        onClick={() => {
+          setPerson(initialPerson);
+          navigate('/');
+        }}
+      >
         cancel
       </button>
     </form>
