@@ -17,11 +17,18 @@ const MyComponent = () => {
   return <div>{state}</div>;
 };
 
-const MyRoot: React.FC = () => {
+type Props = {
+  children?: React.ReactNode;
+};
+const MyRoot: React.FC<Props> = ({ children }) => {
   const state = useState<string>('');
+  return <MyContext.Provider value={state}>{children}</MyContext.Provider>;
+};
+
+const App = () => {
   return (
-    <MyContext.Provider value={state}>
+    <MyRoot>
       <MyComponent />
-    </MyContext.Provider>
+    </MyRoot>
   );
 };
