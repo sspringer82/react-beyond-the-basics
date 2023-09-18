@@ -1,16 +1,24 @@
-import { createContext, useContext, useState } from 'react';
+import React, {
+  Dispatch,
+  SetStateAction,
+  createContext,
+  useContext,
+  useState,
+} from 'react';
 
-const MyContext = createContext(null);
+const MyContext = createContext<[string, Dispatch<SetStateAction<string>>]>([
+  '',
+  () => '',
+]);
 
 const MyComponent = () => {
-  const context = useContext(myContext);
+  const [state] = useContext(MyContext);
 
-  return <div>{context}</div>;
+  return <div>{state}</div>;
 };
 
-const myRoot = () => {
-  const state = useState();
-  const [state, setState] = useState();
+const MyRoot: React.FC = () => {
+  const state = useState<string>('');
   return (
     <MyContext.Provider value={state}>
       <MyComponent />
