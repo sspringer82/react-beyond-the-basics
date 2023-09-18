@@ -1,6 +1,9 @@
 import React from 'react';
 import Person from './Person';
 import { useNavigate } from 'react-router-dom';
+import Button from '@mui/material/Button';
+import DeleteIcon from '@mui/icons-material/Delete';
+import EditIcon from '@mui/icons-material/Edit';
 
 type Params = {
   person: Person;
@@ -18,10 +21,22 @@ const ListItem: React.FC<Params> = ({ person, onDelete }) => {
       <td>{person.city}</td>
       <td>{person.zipcode}</td>
       <td>
-        <button onClick={() => onDelete(person.id)}>delete</button>
+        <Button
+          onClick={() => onDelete(person.id)}
+          startIcon={<DeleteIcon />}
+          variant="outlined"
+        >
+          delete
+        </Button>
       </td>
       <td>
-        <button onClick={() => navigate(`/edit/${person.id}`)}>edit</button>
+        <Button
+          onClick={() => navigate(`/edit/${person.id}`)}
+          startIcon={<EditIcon />}
+          variant="outlined"
+        >
+          edit
+        </Button>
       </td>
     </tr>
   );
