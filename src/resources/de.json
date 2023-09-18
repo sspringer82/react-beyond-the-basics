@@ -1,0 +1,11 @@
+{
+  "loading": "lade Date",
+  "error": "Ein Fehler ist aufgetreten",
+  "firstName": "Vorname",
+  "lastName": "Nachname",
+  "birthDate": "Geburtstag",
+  "street": "Straße",
+  "city": "Stadt",
+  "zipCode": "PLZ",
+  "birthDateDate": "{value, date}"
+}

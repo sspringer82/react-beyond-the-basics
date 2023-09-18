@@ -1,6 +1,7 @@
 import React from 'react';
 import ListItem from './ListItem';
 import { useNavigate } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 
 import { useMutation, useQuery, useQueryClient } from 'react-query';
 import Person from './Person';
@@ -26,6 +27,7 @@ async function removePerson(id: number) {
 }
 
 const List: React.FC = () => {
+  const { t } = useTranslation();
   const navigate = useNavigate();
   const queryClient = useQueryClient();
 
@@ -42,11 +44,11 @@ const List: React.FC = () => {
   });
 
   if (isLoading) {
-    return <div>...lade Daten</div>;
+    return <div>{t('loading')}</div>;
   }
 
   if (isError) {
-    return <div>{`Ein Fehler ist aufgetreten`}</div>;
+    return <div>{t('error')}</div>;
   }
 
   function handleDelete(id: number) {
@@ -58,12 +60,12 @@ const List: React.FC = () => {
       <table>
         <thead>
           <tr>
-            <th>first name</th>
-            <th>last name</th>
-            <th>birth date</th>
-            <th>street</th>
-            <th>city</th>
-            <th>zip code</th>
+            <th>{t('firstName')}</th>
+            <th>{t('lastName')}</th>
+            <th>{t('birthDate')}</th>
+            <th>{t('street')}</th>
+            <th>{t('city')}</th>
+            <th>{t('zipCode')}</th>
           </tr>
         </thead>
         <tbody>

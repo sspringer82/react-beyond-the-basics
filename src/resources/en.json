@@ -1,0 +1,11 @@
+{
+  "loading": "loading data",
+  "error": "an error occurred",
+  "firstName": "first name",
+  "lastName": "last name",
+  "birthDate": "birth date",
+  "street": "street",
+  "city": "city",
+  "zipCode": "zip code",
+  "birthDateDate": "{value, date}"
+}

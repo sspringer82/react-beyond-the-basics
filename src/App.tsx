@@ -4,12 +4,14 @@ import Form from './Form';
 import { PersonProvider } from './PersonProvider';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { QueryClient, QueryClientProvider } from 'react-query';
+import LanguageSwitcher from './LanguageSwitcher';
 
 const queryClient = new QueryClient();
 
 const App: React.FC = () => {
   return (
     <QueryClientProvider client={queryClient}>
+      <LanguageSwitcher />
       <BrowserRouter>
         <PersonProvider>
           <Routes>
