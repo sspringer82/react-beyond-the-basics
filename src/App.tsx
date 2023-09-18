@@ -3,19 +3,24 @@ import List from './List';
 import Form from './Form';
 import { PersonProvider } from './PersonProvider';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import { QueryClient, QueryClientProvider } from 'react-query';
+
+const queryClient = new QueryClient();
 
 const App: React.FC = () => {
   return (
-    <BrowserRouter>
-      <PersonProvider>
-        <Routes>
-          <Route path="/" element={<List />} />
-          <Route path="/create" element={<Form />} />
-          <Route path="/edit/:id" element={<Form />} />
-          <Route path="*" element={<h1>Not Found</h1>} />
-        </Routes>
-      </PersonProvider>
-    </BrowserRouter>
+    <QueryClientProvider client={queryClient}>
+      <BrowserRouter>
+        <PersonProvider>
+          <Routes>
+            <Route path="/" element={<List />} />
+            <Route path="/create" element={<Form />} />
+            <Route path="/edit/:id" element={<Form />} />
+            <Route path="*" element={<h1>Not Found</h1>} />
+          </Routes>
+        </PersonProvider>
+      </BrowserRouter>
+    </QueryClientProvider>
   );
 };
 
